@@ -6,5 +6,5 @@ export const breakpoints: Partial<
         unit: string;
     } & Breakpoints
 > = {
-    values: { xs: 0, sm: 600, md: 960, lg: 1280, xl: 1920 },
+    values: { xs: 430, sm: 600, md: 960, lg: 1100, xl: 1920 },
 };

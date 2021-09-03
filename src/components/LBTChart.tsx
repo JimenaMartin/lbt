@@ -1,14 +1,18 @@
-import React from "react";
+/** @jsxImportSource @emotion/react */
+
+import React, { useEffect, useState } from "react";
 import { createChart } from "lightweight-charts";
+import { css } from "@emotion/react";
+import { Box, Typography, useTheme, useMediaQuery } from '@material-ui/core'
 
 var chartElement = document.createElement("div");
 
 var chart = createChart(chartElement, {
-  width: 990,
-  height: 500,
+  width: 589,
+  height: 290,
   layout: {
     backgroundColor: "transparent",
-    textColor: 'white',
+    textColor: "white",
   },
   rightPriceScale: {
     borderVisible: false,
@@ -26,7 +30,7 @@ var chart = createChart(chartElement, {
   },
 });
 
-document.body.appendChild(chartElement);
+
 
 var areaSeries = chart.addAreaSeries({
   topColor: "rgba(180, 82, 255, 0.4)",
@@ -206,6 +210,88 @@ areaSeries.setData(data);
 volumeSeries.setData(data);
 
 
+
+window.addEventListener('resize', () => {
+  const wrapper = document.getElementById("chart-wrapper");
+ chart.applyOptions({
+   width: wrapper?.offsetWidth,
+   height: wrapper?.offsetHeight,
+ });
+})
+
 export function LBTChart() {
-   return  <div>CHART</div>
+  const theme = useTheme()
+  const styles = {
+    box: css`
+      background-color: #171236;
+      border: 1px solid #651c9c;
+      border-radius: 16px;
+      height: 378px;
+      width: 100%;
+      padding: ${theme.spacing(4)} ${theme.spacing(3)};
+      @media (max-width: 430px) {
+        padding: ${theme.spacing(2)} ${theme.spacing(1)} ${theme.spacing(2)} ${theme.spacing(2)};
+        max-width: 355px;
+      }
+      @media (min-width: 600px) and (max-width: 800px) {
+        /* width: 95%; */
+      }
+    `,
+    legendVolume: css`
+      width: 8px;
+      height: 8px;
+      background-color: #9d3be8;
+      border-radius: 5px;
+    `,
+  };
+  const isXsSize = useMediaQuery(theme.breakpoints.down('xs'))
+
+  const [ chartExists, setChartExists ] = useState(false)
+  let wrapper: HTMLElement | null = null
+
+
+  useEffect(()  => {
+    wrapper = document.getElementById("chart-wrapper");
+  }, [])
+
+
+  useEffect(() => {
+    if (wrapper && !chartExists) {
+      wrapper.appendChild(chartElement);
+      const height =
+        document.body.offsetWidth < 400
+          ? 300
+          : 280;
+
+      chart.applyOptions({
+        width: wrapper?.offsetWidth,
+        height: height,
+      });
+      setChartExists(true)
+    }
+  }, [wrapper, chartExists])
+   
+
+  return (
+    <Box css={styles.box}>
+      <Box display="flex" justifyContent="space-between" mb={2} id="parent-box">
+        {!isXsSize && <Typography>GRO Price</Typography>}
+        <Box display="flex">
+          <Box mr={5} display="flex" alignItems="center">
+            <Box css={styles.legendVolume} mr={1} />
+            <Typography variant="nav" color={theme.palette.grey[100]}>
+              GRO Price
+            </Typography>
+          </Box>
+          <Box display="flex" alignItems="center">
+            <Box css={styles.legendVolume} mr={1} />
+            <Typography variant="nav" color={theme.palette.grey[100]}>
+              Volume (24 Hours)
+            </Typography>
+          </Box>
+        </Box>
+      </Box>
+      <Box id="chart-wrapper" />
+    </Box>
+  );
 }
