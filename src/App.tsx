@@ -33,30 +33,13 @@ function App() {
 
   return (
     <Box display="flex" justifyContent="center" css={styles.main}>
-      <Box css={styles.wrapper} px={isMdSize ? 3.5 : 0}>
+      <Box css={styles.wrapper} mx={isMdSize ? 3.5 : 0}>
         <Header />
-        <Grid
-          container
-          mb={5}
-          spacing={isXsSize ? 0 : 2}
-        >
-          <Grid
-            item
-            md={4}
-            sm={5}
-            xs={12}
-            component={Box}
-            width="100%"
-          >
+        <Grid container mb={5} spacing={isXsSize ? 0 : 2}>
+          <Grid item md={4} sm={5} xs={12} component={Box} width="100%">
             <GetTokens />
           </Grid>
-          <Grid
-            item
-            md={8}
-            sm={7}
-            xs={12}
-            component={Box}
-          >
+          <Grid item md={8} sm={7} xs={12} component={Box} width="100%">
             <LBTChart />
           </Grid>
         </Grid>

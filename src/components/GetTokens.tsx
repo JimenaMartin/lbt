@@ -29,11 +29,10 @@ export function GetTokens() {
       height: 378px;
       margin-bottom: ${theme.spacing(3)};
       @media (max-width: 1100px) and (min-width: 600px) {
-        width: 100%;
         min-width: 272px;
       }
-      @media (max-width: 430) {
-        width: 100%;
+      @media (max-width: 350px) {
+        max-width: 300px;
       }
     `,
     timeBox: css`
@@ -60,6 +59,7 @@ export function GetTokens() {
     iconBtn: css`
       position: absolute;
       right: 12px;
+      top: 9px;
     `
   };
 
@@ -127,13 +127,13 @@ export function GetTokens() {
           <Typography color={theme.palette.grey[100]}>1,016,000</Typography>
         </Box>
       </Box>
-      <Box mt={5} mb={4}>
+      <Box mt={5} mb={3}>
         <Typography color={theme.palette.grey[100]}>Latest price</Typography>
         <Typography mt={1.5} variant="h1">
           0.42
         </Typography>
       </Box>
-      <Button fullWidth variant="contained" css={styles.button} endIcon={<StackedIcon />}>
+      <Button fullWidth variant="contained" css={styles.button} endIcon={<StackedIcon css={styles.iconBtn} />}>
         Get GRO tokens
       </Button>
     </Box>

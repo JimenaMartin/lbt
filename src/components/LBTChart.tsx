@@ -229,8 +229,12 @@ export function LBTChart() {
       height: 378px;
       width: 100%;
       padding: ${theme.spacing(4)} ${theme.spacing(3)};
-      @media (max-width: 430px) {
-        padding: ${theme.spacing(2)} ${theme.spacing(1)} ${theme.spacing(2)} ${theme.spacing(2)};
+      @media (max-width: 350px) {
+        max-width: 300px;
+      }
+      @media (max-width: 430px) and (min-width: 350px) {
+        padding: ${theme.spacing(2)} ${theme.spacing(1)} ${theme.spacing(2)}
+          ${theme.spacing(2)};
         max-width: 355px;
       }
       @media (min-width: 600px) and (max-width: 800px) {
