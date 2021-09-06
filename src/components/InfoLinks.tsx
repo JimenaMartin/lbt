@@ -1,5 +1,4 @@
 /** @jsxImportSource @emotion/react */
-import { css } from "@emotion/react";
 import { Box, Typography, useTheme, useMediaQuery, IconButton, Link } from "@material-ui/core";
 import { ReactComponent as DownloadIcon } from "../icons/download.svg";
 import { ReactComponent as NavigateIcon } from "../icons/navigate.svg";
@@ -26,7 +25,7 @@ export function InfoLinks() {
       <Box display="flex" justifyContent="space-between" flexWrap="wrap">
         {(isXsSize ? mobileLinks : links).map((elem) => (
           <Box display="flex" alignItems="center" key={elem.label}>
-            <Typography mr={0.3} color={theme.palette.grey[100]}>
+            <Typography  color={theme.palette.grey[100]}>
               {elem.label}
             </Typography>
             <IconButton component={Link} href={elem.href}>
@@ -35,7 +34,7 @@ export function InfoLinks() {
           </Box>
         ))}
         <Box display="flex" alignItems="center">
-          <Typography mr={0.3} color={theme.palette.grey[100]}>
+          <Typography color={theme.palette.grey[100]}>
             Security Audits
           </Typography>
           <IconButton>
@@ -43,7 +42,7 @@ export function InfoLinks() {
           </IconButton>
         </Box>
         <Box display="flex" alignItems="center" mt={isXsSize ? 2 : 0}>
-          <Typography mr={0.3} color={theme.palette.grey[100]}>
+          <Typography  color={theme.palette.grey[100]}>
             See for updates:
           </Typography>
           <Box mr={1} display="flex" alignItems="center">

@@ -5,8 +5,9 @@ import { Box, Button, Typography, useTheme, Tooltip } from "@material-ui/core";
 import { css, keyframes } from "@emotion/react";
 import { ReactComponent as InfoIcon } from "../icons/info.svg";
 import { ReactComponent as StackedIcon } from "../icons/stacked.svg";
+import { ReactComponent as ArrowUpIcon } from "../icons/arrow-up.svg";
 
-export function GetTokens() {
+export function GetTokens({setIsOpen}: { setIsOpen: (val: boolean) => void}) {
   const [ remainingTime, setRemainingTime ] = useState<number[]>([])
   const theme = useTheme()
 
@@ -15,13 +16,13 @@ export function GetTokens() {
     box-shadow: none;
   }
   100% {
-    box-shadow: 0px 0px 20px #ff0bff;
+    box-shadow: 0px 0px 20px ${theme.palette.lbt.dark};
   }
 `;
 
   const styles = {
     box: css`
-      background-color: #171236;
+      background-color: ${theme.palette.lbt.main};
       border: 1px solid ${theme.palette.gro.dark};
       border-radius: 16px;
       width: 100%;
@@ -46,13 +47,13 @@ export function GetTokens() {
     `,
     button: css`
       background-color: ${theme.palette.gro.dark};
-      border: 1px solid #ff9bff;
+      border: 1px solid ${theme.palette.lbt.superLight};
       box-shadow: none;
       padding: ${theme.spacing(1.5)} 0px;
       animation: ${lightUp} 1s ease-in-out 2s infinite alternate;
       &:hover {
-        background-color: #9d3ee8;
-        box-shadow: 0px 0px 20px #ff0bff;
+        background-color: ${theme.palette.lbt.dark};
+        box-shadow: 0px 0px 20px ${theme.palette.lbt.light};
         animation: none;
       }
     `,
@@ -60,32 +61,28 @@ export function GetTokens() {
       position: absolute;
       right: 12px;
       top: 9px;
-    `
+    `,
   };
 
-  const countDownDate = new Date("Sept 5, 2021 15:37:25").getTime();
-
-  function getRemainingTime() {
-    const now = new Date().getTime();
-    const distance = countDownDate - now;
-    const days = Math.floor(distance / (1000 * 60 * 60 * 24));
-    const hours = Math.floor(
-      (distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)
-    );
-    const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-    const seconds = Math.floor((distance % (1000 * 60)) / 1000);
-    setRemainingTime(
-      [days,
-      hours,
-      minutes,
-      seconds]
-    )
-  }
-
   useEffect(() => {
+    const countDownDate = new Date("Sept 10, 2021 15:37:25").getTime();
+
+    function getRemainingTime() {
+      const now = new Date().getTime();
+      const distance = countDownDate - now;
+      const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+      const hours = Math.floor(
+        (distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)
+      );
+      const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+      const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+      setRemainingTime([days, hours, minutes, seconds]);
+    }
+
     setInterval(() => {
       getRemainingTime()
     }, 1000)
+    
   }, [])
 
   return (
@@ -111,9 +108,13 @@ export function GetTokens() {
               alignItems="center"
               key={`${index}-time`}
             >
-              <Typography variant="h1">{elem < 10 ? `0${elem}` : elem}</Typography>
+              <Typography variant="h1">
+                {elem < 10 ? `0${elem}` : elem}
+              </Typography>
             </Box>
-            {remainingTime.length -1 !== index && <Typography variant="h1">:</Typography>}
+            {remainingTime.length - 1 !== index && (
+              <Typography variant="h1">:</Typography>
+            )}
           </React.Fragment>
         ))}
       </Box>
@@ -129,11 +130,24 @@ export function GetTokens() {
       </Box>
       <Box mt={5} mb={3}>
         <Typography color={theme.palette.grey[100]}>Latest price</Typography>
-        <Typography mt={1.5} variant="h1">
-          0.42
-        </Typography>
+        <Box display="flex" mt={1.5} alignItems="baseline">
+          <Typography variant="h1" mr={1}>$0.42</Typography>
+          <ArrowUpIcon />
+          <Typography variant="body1" mx={0.5} color={theme.palette.grey[100]}>
+            $0.04
+          </Typography>
+          <Typography variant="body1" color={theme.palette.grey[100]}>
+            1hr
+          </Typography>
+        </Box>
       </Box>
-      <Button fullWidth variant="contained" css={styles.button} endIcon={<StackedIcon css={styles.iconBtn} />}>
+      <Button
+        onClick={() => setIsOpen(true)}
+        fullWidth
+        variant="contained"
+        css={styles.button}
+        endIcon={<StackedIcon css={styles.iconBtn} />}
+      >
         Get GRO tokens
       </Button>
     </Box>

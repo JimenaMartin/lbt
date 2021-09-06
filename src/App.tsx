@@ -1,11 +1,12 @@
 /** @jsxImportSource @emotion/react */
-
+import { useState } from 'react'
 import "./App.css";
 import { Box, Grid, useTheme, useMediaQuery } from "@material-ui/core";
 import { LBTChart } from "./components/LBTChart";
 import { GetTokens } from "./components/GetTokens";
 import { InfoLinks } from "./components/InfoLinks";
 import { TokenAllocation } from "./components/TokenAllocation";
+import { TokenModal } from "./components/TokenModal";
 import { Team } from "./components/Team";
 import { css } from "@emotion/react";
 import { Launch } from "./components/Launch";
@@ -16,6 +17,7 @@ import gradient_background from "./assets/gradient_background.png";
 
 function App() {
   const theme = useTheme()
+  const [isOpen, setIsOpen] = useState(false)
 
   const styles = {
     main: css`
@@ -34,10 +36,11 @@ function App() {
   return (
     <Box display="flex" justifyContent="center" css={styles.main}>
       <Box css={styles.wrapper} mx={isMdSize ? 3.5 : 0}>
-        <Header />
-        <Grid container mb={5} spacing={isXsSize ? 0 : 2}>
+        <Header setIsOpen={setIsOpen} />
+        <TokenModal setIsOpen={setIsOpen} isOpen={isOpen} />
+        <Grid container mb={5} spacing={isXsSize ? 0 : 3}>
           <Grid item md={4} sm={5} xs={12} component={Box} width="100%">
-            <GetTokens />
+            <GetTokens setIsOpen={setIsOpen} />
           </Grid>
           <Grid item md={8} sm={7} xs={12} component={Box} width="100%">
             <LBTChart />

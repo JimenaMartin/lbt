@@ -69,6 +69,14 @@ const purple = {
     800: '#651C9C',
 };
 
+const lbt = {
+  superLight: "#ff9bff",
+  light: "ff0bff",
+  dark: "#9d3ee8",
+  main: "#171236",
+  superDark: purple[800]
+};
+
 export const paletteCore: ThemeOptions['palette'] = {
     alert: {
         contrastText: black,
@@ -97,6 +105,7 @@ export const paletteCore: ThemeOptions['palette'] = {
         main: warningRedLight,
     },
     grey,
+    lbt,
     gro: {
         contrastText: white,
         dark: purple[800],

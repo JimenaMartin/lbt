@@ -30,18 +30,20 @@ declare module '@material-ui/core/styles' {
         superLight?: string;
     }
     interface Palette {
-        alert: SimplePaletteColorOptions;
-        default: SimplePaletteColorOptions;
-        gro: SimplePaletteColorOptions;
-        gvt: SimplePaletteColorOptions;
-        pwrd: SimplePaletteColorOptions;
+      alert: SimplePaletteColorOptions;
+      default: SimplePaletteColorOptions;
+      lbt: SimplePaletteColorOptions;
+      gro: SimplePaletteColorOptions;
+      gvt: SimplePaletteColorOptions;
+      pwrd: SimplePaletteColorOptions;
     }
     interface PaletteOptions {
-        alert?: PaletteColorOptions;
-        default?: PaletteColorOptions;
-        gro?: PaletteColorOptions;
-        gvt?: PaletteColorOptions;
-        pwrd?: PaletteColorOptions;
+      alert?: PaletteColorOptions;
+      default?: PaletteColorOptions;
+      lbt?: PaletteColorOptions;
+      gro?: PaletteColorOptions;
+      gvt?: PaletteColorOptions;
+      pwrd?: PaletteColorOptions;
     }
     interface TypographyVariants {
         chart: React.CSSProperties;

@@ -1,6 +1,6 @@
 /** @jsxImportSource @emotion/react */
 
-import React, { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { createChart } from "lightweight-charts";
 import { css } from "@emotion/react";
 import { Box, Typography, useTheme, useMediaQuery } from '@material-ui/core'
@@ -223,8 +223,8 @@ export function LBTChart() {
   const theme = useTheme()
   const styles = {
     box: css`
-      background-color: #171236;
-      border: 1px solid #651c9c;
+      background-color: ${theme.palette.lbt.main};
+      border: 1px solid ${theme.palette.lbt.superDark};
       border-radius: 16px;
       height: 378px;
       width: 100%;
@@ -233,8 +233,7 @@ export function LBTChart() {
         max-width: 300px;
       }
       @media (max-width: 430px) and (min-width: 350px) {
-        padding: ${theme.spacing(2)} ${theme.spacing(1)} ${theme.spacing(2)}
-          ${theme.spacing(2)};
+        padding: ${theme.spacing(2)} ${theme.spacing(1)} ${theme.spacing(2)} ${theme.spacing(2)};
         max-width: 355px;
       }
       @media (min-width: 600px) and (max-width: 800px) {
@@ -244,31 +243,32 @@ export function LBTChart() {
     legendVolume: css`
       width: 8px;
       height: 8px;
-      background-color: #9d3be8;
+      background-color: ${theme.palette.gro.main};
       border-radius: 5px;
     `,
   };
   const isXsSize = useMediaQuery(theme.breakpoints.down('xs'))
 
   const [ chartExists, setChartExists ] = useState(false)
-  let wrapper: HTMLElement | null = null
+  let wrapper = useRef<HTMLElement>()
 
 
   useEffect(()  => {
-    wrapper = document.getElementById("chart-wrapper");
+    const elem = document.getElementById("chart-wrapper");
+    if(elem) wrapper.current = elem
   }, [])
 
 
   useEffect(() => {
-    if (wrapper && !chartExists) {
-      wrapper.appendChild(chartElement);
+    if (wrapper.current && !chartExists) {
+      wrapper.current.appendChild(chartElement);
       const height =
         document.body.offsetWidth < 400
           ? 300
           : 280;
 
       chart.applyOptions({
-        width: wrapper?.offsetWidth,
+        width: wrapper.current?.offsetWidth,
         height: height,
       });
       setChartExists(true)
