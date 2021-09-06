@@ -1,5 +1,4 @@
 import { useState } from 'react'
-import "./App.css";
 import { Box, Grid, useTheme, useMediaQuery } from "@material-ui/core";
 import { LBTChart } from "./components/LBTChart";
 import { GetTokens } from "./components/GetTokens";
