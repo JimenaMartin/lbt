@@ -1,5 +1,3 @@
-/** @jsxImportSource @emotion/react */
-
 import { Box, Button, Typography, useTheme, useMediaQuery } from "@material-ui/core";
 import { css } from "@emotion/react";
 import { ReactComponent as GroFullLogoSvg } from "../icons/groFull.svg";

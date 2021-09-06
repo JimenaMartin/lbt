@@ -1,4 +1,3 @@
-/** @jsxImportSource @emotion/react */
 import { Grid, Typography, Box, useTheme, IconButton, Link } from "@material-ui/core";
 import gro_roadmap from "../assets/gro_roadmap.png";
 

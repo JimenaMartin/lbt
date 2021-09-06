@@ -1,5 +1,3 @@
-/** @jsxImportSource @emotion/react */
-
 import React, { useEffect, useState } from 'react'
 import { Box, Button, Typography, useTheme, Tooltip } from "@material-ui/core";
 import { css, keyframes } from "@emotion/react";

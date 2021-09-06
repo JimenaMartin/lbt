@@ -1,4 +1,3 @@
-/** @jsxImportSource @emotion/react */
 import { Box, Typography, useTheme, useMediaQuery, IconButton, Link } from "@material-ui/core";
 import { ReactComponent as DownloadIcon } from "../icons/download.svg";
 import { ReactComponent as NavigateIcon } from "../icons/navigate.svg";

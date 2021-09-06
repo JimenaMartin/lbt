@@ -1,5 +1,3 @@
-/** @jsxImportSource @emotion/react */
-
 import { useEffect, useRef, useState } from "react";
 import { createChart } from "lightweight-charts";
 import { css } from "@emotion/react";
@@ -235,9 +233,6 @@ export function LBTChart() {
       @media (max-width: 430px) and (min-width: 350px) {
         padding: ${theme.spacing(2)} ${theme.spacing(1)} ${theme.spacing(2)} ${theme.spacing(2)};
         max-width: 355px;
-      }
-      @media (min-width: 600px) and (max-width: 800px) {
-        /* width: 95%; */
       }
     `,
     legendVolume: css`
