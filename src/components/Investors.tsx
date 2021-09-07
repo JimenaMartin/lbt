@@ -5,9 +5,9 @@ import {
   Box,
   useTheme,
   useMediaQuery,
-  Link
 } from "@material-ui/core";
 import { css } from "@emotion/react";
+import { BtnLink } from './BtnLink';
 
 import { ReactComponent as NavigateIcon } from "../icons/navigate.svg";
 
@@ -24,13 +24,9 @@ export function Investors() {
           width: 32%;
         }
       `,
-      link: css`
-        cursor: pointer;
-        text-decoration: none;
-      `,
     };
-  const isXsSize = useMediaQuery(theme.breakpoints.down("xs"));
   const isLgSize = useMediaQuery(theme.breakpoints.down("lg"));
+  const isXsSize = useMediaQuery(theme.breakpoints.down("xs"));
 
   const investorsList = useMemo(() => {
       const investors = ['Nascent', 'Nascent', 'Nascent', 'Nascent', 'Nascent', 'Nascent']
@@ -40,22 +36,16 @@ export function Investors() {
     return (
       <Grid container pt={10} id="investors">
         <Grid item sm={5}>
-          <Typography variant="h1" color={theme.palette.grey[100]}>
+          <Typography variant="h1" color={theme.palette.grey[100]} mb={2}>
             Backed by leading investors
           </Typography>
-          <Box
-            css={styles.link}
-            component={Link}
-            href="https://www.gro.xyz/about#about-investors"
-            display="flex"
-            alignItems="center"
-            mt={2}
-            mb={isXsSize ? 5 : 0}
-          >
-            <Typography mr={1} color={theme.palette.grey[200]}>
-              See all
-            </Typography>
-            <NavigateIcon />
+          <Box mb={isXsSize ? 5 : 0}>
+            <BtnLink
+              text="See all"
+              href="https://www.gro.xyz/about#about-investors"
+            >
+              <NavigateIcon />
+            </BtnLink>
           </Box>
         </Grid>
         <Grid item sm={7} width="100%">

@@ -1,18 +1,22 @@
-import { Box, Typography, useTheme, useMediaQuery, IconButton, Link } from "@material-ui/core";
+import { Box, Typography, useTheme, useMediaQuery, Link } from "@material-ui/core";
 import { ReactComponent as DownloadIcon } from "../icons/download.svg";
 import { ReactComponent as NavigateIcon } from "../icons/navigate.svg";
 import { ReactComponent as DiscordIcon } from "../icons/discord.svg";
 import { ReactComponent as TwitterIcon } from "../icons/twitter.svg";
 import { ReactComponent as TelegramIcon } from "../icons/telegram.svg";
 import { css } from "@emotion/react";
+import { BtnLink } from './BtnLink'
 
 export function InfoLinks() {
   const theme = useTheme();
 
     const styles = {
       link: css`
-        cursor: pointer;
-        text-decoration: none;
+        &:hover {
+          & svg > path {
+            fill: white;
+          }
+        }
       `,
     };
 
@@ -32,49 +36,48 @@ export function InfoLinks() {
     return (
       <Box display="flex" justifyContent="space-between" flexWrap="wrap">
         {(isXsSize ? mobileLinks : links).map((elem) => (
-          <Box
-            display="flex"
-            alignItems="center"
-            key={elem.label}
-            component={Link}
-            href={elem.href}
-            css={styles.link}
-          >
-            <Typography color={theme.palette.grey[100]} mr={1}>
-              {elem.label}
-            </Typography>
+          <BtnLink text={elem.label} href={elem.href}>
             <DownloadIcon />
-          </Box>
+          </BtnLink>
         ))}
-        <Box
-          display="flex"
-          alignItems="center"
-          component={Link}
-          css={styles.link}
-        >
-          <Typography color={theme.palette.grey[100]} mr={1}>
-            Security Audits
-          </Typography>
+        <BtnLink text="Security Audits">
           <NavigateIcon />
-        </Box>
+        </BtnLink>
         <Box display="flex" alignItems="center" mt={isXsSize ? 2 : 0}>
           <Typography color={theme.palette.grey[100]}>
             See for updates:
           </Typography>
-          <Box mr={1} display="flex" alignItems="center">
-            <IconButton component={Link} href="https://discord.gg/aNprNWqjQ4">
-              <DiscordIcon />
-            </IconButton>
+          <Box
+            mr={1}
+            display="flex"
+            alignItems="center"
+            component={Link}
+            href="https://discord.gg/aNprNWqjQ4"
+            css={styles.link}
+            ml={2}
+          >
+            <DiscordIcon />
           </Box>
-          <Box mr={1} display="flex" alignItems="center">
-            <IconButton component={Link} href="https://twitter.com/groprotocol">
-              <TwitterIcon />
-            </IconButton>
+          <Box
+            mr={1}
+            display="flex"
+            alignItems="center"
+            component={Link}
+            href="https://twitter.com/groprotocol"
+            css={styles.link}
+            ml={2}
+          >
+            <TwitterIcon />
           </Box>
-          <Box display="flex" alignItems="center">
-            <IconButton component={Link} href="https://t.me/gro_discussion">
-              <TelegramIcon />
-            </IconButton>
+          <Box
+            display="flex"
+            alignItems="center"
+            component={Link}
+            href="https://t.me/gro_discussion"
+            css={styles.link}
+            ml={2}
+          >
+            <TelegramIcon />
           </Box>
         </Box>
       </Box>

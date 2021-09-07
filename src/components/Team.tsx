@@ -1,13 +1,11 @@
 import {
   Grid,
   Typography,
-  Box,
   useTheme,
   useMediaQuery,
-  Link,
 } from "@material-ui/core";
 import carrousel from "../assets/carrousel.png";
-import { css } from "@emotion/react";
+import { BtnLink } from "./BtnLink";
 
 import { ReactComponent as NavigateIcon } from "../icons/navigate.svg";
 
@@ -16,37 +14,19 @@ export function Team() {
 
   const isXsSize = useMediaQuery(theme.breakpoints.down("xs"));
 
-  const styles = {
-    link: css`
-      cursor: pointer;
-      text-decoration: none;
-    `,
-  };
-
-
   return (
     <Grid container pt={10} id="team">
       <Grid item sm={4}>
         <Typography variant="h1" color={theme.palette.grey[100]}>
           Gro Team
         </Typography>
-        <Typography mt={5} color={theme.palette.grey[100]}>
+        <Typography mt={5} color={theme.palette.grey[100]} mb={2}>
           A team with decades of experience from leading finance and technology
           institutions.
         </Typography>
-        <Box
-          css={styles.link}
-          display="flex"
-          alignItems="center"
-          mt={2}
-          component={Link}
-          href="https://www.gro.xyz/about"
-        >
-          <Typography mr={1} color={theme.palette.grey[200]}>
-            Meet the team
-          </Typography>
+        <BtnLink text="Meet the team" href="https://www.gro.xyz/about">
           <NavigateIcon />
-        </Box>
+        </BtnLink>
       </Grid>
       <Grid item sm={1} />
       <Grid item sm={7} mt={isXsSize ? 5 : 0}>

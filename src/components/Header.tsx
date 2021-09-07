@@ -36,7 +36,7 @@ export function Header({
     `,
   };
 
-  const isXsSize = useMediaQuery(theme.breakpoints.down("xs"));
+  const isXsSize = useMediaQuery(theme.breakpoints.down("sm"));
 
   return (
     <Box css={styles.wrapper} mb={isXsSize ? 3 : 30} mt={isXsSize ? 5 : 7}>

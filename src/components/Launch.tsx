@@ -1,17 +1,10 @@
-import { Box, Typography, useTheme, useMediaQuery, Link } from "@material-ui/core";
+import { Box, Typography, useTheme, useMediaQuery } from "@material-ui/core";
 import { ReactComponent as NavigateIcon } from "../icons/navigate.svg";
-import { css } from "@emotion/react";
+import { BtnLink} from './BtnLink'
 
 export function Launch() {
   const theme = useTheme();
   const isXsSize = useMediaQuery(theme.breakpoints.down("xs"));
-
-  const styles = {
-    link: css`
-      cursor: pointer;
-      text-decoration: none;
-    `
-  }
 
     return (
       <Box mt={isXsSize ? 7 : 10}>
@@ -26,12 +19,9 @@ export function Launch() {
           malesuada malesuada leo. Nibh sed aliquet adipiscing lectus cursus.
           Elementum condimentum orci elementum integer risus eget dignissim ac.
         </Typography>
-        <Box display="flex" alignItems="center" component={Link} css={styles.link}>
-          <Typography mr={1} color={theme.palette.grey[200]}>
-            Learn more
-          </Typography>
+        <BtnLink text="Learn more">
           <NavigateIcon />
-        </Box>
+        </BtnLink>
       </Box>
     );
 }
