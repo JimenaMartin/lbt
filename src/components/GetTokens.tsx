@@ -5,8 +5,13 @@ import { ReactComponent as StackedIcon } from "../icons/stacked.svg";
 import { ReactComponent as ArrowUpIcon } from "../icons/arrow-up.svg";
 import { ReactComponent as TimerIcon } from "../icons/timer.svg";
 
+interface Time {
+  value: number
+  label: string
+}
+
 export function GetTokens({setIsOpen}: { setIsOpen: (val: boolean) => void}) {
-  const [ remainingTime, setRemainingTime ] = useState<number[]>([])
+  const [remainingTime, setRemainingTime] = useState<Time[]>([]);
   const [ totalPercentage, setTotalPercentage] = useState(0)
   const theme = useTheme()
 
@@ -96,7 +101,7 @@ export function GetTokens({setIsOpen}: { setIsOpen: (val: boolean) => void}) {
       ) + days * 24;
       const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
       const seconds = Math.floor((distance % (1000 * 60)) / 1000);
-      setRemainingTime([hours, minutes, seconds]);
+      setRemainingTime([{value:hours, label: 'HR'}, {value:minutes, label: 'MIN'}, {value:seconds, label: 'SEC'}]);
       setTotalPercentage(percentage)
     }
 
@@ -109,9 +114,9 @@ export function GetTokens({setIsOpen}: { setIsOpen: (val: boolean) => void}) {
 
 
   const totalDuration = [
-    { time: "72", text: "HR" },
-    { time: "00", text: "MIN" },
-    { time: "00", text: "SEC" },
+    { value: "72", label: "HR" },
+    { value: "00", label: "MIN" },
+    { value: "00", label: "SEC" },
   ];
 
   const totalGRO = 5000000
@@ -133,13 +138,13 @@ export function GetTokens({setIsOpen}: { setIsOpen: (val: boolean) => void}) {
               <React.Fragment>
                 <Box mr={totalDuration.length - 1 !== index ? 0.5 : 0}>
                   <Typography color={theme.palette.grey[100]} variant="h2">
-                    {elem.time}
+                    {elem.value}
                   </Typography>
                   <Typography
                     css={styles.subText}
                     color={theme.palette.grey[200]}
                   >
-                    {elem.text}
+                    {elem.label}
                   </Typography>
                 </Box>
                 {totalDuration.length - 1 !== index && (
@@ -182,13 +187,13 @@ export function GetTokens({setIsOpen}: { setIsOpen: (val: boolean) => void}) {
               <React.Fragment>
                 <Box mr={totalDuration.length - 1 !== index ? 0.5 : 0}>
                   <Typography color={theme.palette.grey[100]} variant="h2">
-                    {elem < 10 ? `0${elem}` : elem}
+                    {elem.value < 10 ? `0${elem.value}` : elem.value}
                   </Typography>
                   <Typography
                     css={styles.subText}
                     color={theme.palette.grey[200]}
                   >
-                    HR
+                    {elem.label}
                   </Typography>
                 </Box>
                 {totalDuration.length - 1 !== index && (
