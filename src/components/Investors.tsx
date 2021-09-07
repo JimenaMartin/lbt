@@ -26,7 +26,7 @@ export function Investors() {
       `,
     };
   const isLgSize = useMediaQuery(theme.breakpoints.down("lg"));
-  const isXsSize = useMediaQuery(theme.breakpoints.down("xs"));
+  const isSmSize = useMediaQuery(theme.breakpoints.down("sm"));
 
   const investorsList = useMemo(() => {
       const investors = ['Nascent', 'Nascent', 'Nascent', 'Nascent', 'Nascent', 'Nascent']
@@ -39,7 +39,7 @@ export function Investors() {
           <Typography variant="h1" color={theme.palette.grey[100]} mb={2}>
             Backed by leading investors
           </Typography>
-          <Box mb={isXsSize ? 5 : 0}>
+          <Box mb={isSmSize ? 5 : 0}>
             <BtnLink
               text="See all"
               href="https://www.gro.xyz/about#about-investors"

@@ -21,7 +21,7 @@ export function BtnLink({ text, href = '', children}: { text: string, href?: str
 
     return (
       <Box
-        display="flex"
+        display="inline-flex"
         alignItems="center"
         component={Link}
         css={styles.link}

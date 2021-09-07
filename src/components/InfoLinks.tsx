@@ -31,6 +31,7 @@ export function InfoLinks() {
     const mobileLinks = [{ label: 'Learn more', href: ''}]
 
   const isXsSize = useMediaQuery(theme.breakpoints.down("xs"));
+  const isSmSize = useMediaQuery(theme.breakpoints.down("sm"));
 
 
     return (
@@ -43,7 +44,7 @@ export function InfoLinks() {
         <BtnLink text="Security Audits">
           <NavigateIcon />
         </BtnLink>
-        <Box display="flex" alignItems="center" mt={isXsSize ? 2 : 0}>
+        <Box display="flex" alignItems="center" mt={isSmSize ? 2 : 0}>
           <Typography color={theme.palette.grey[100]}>
             See for updates:
           </Typography>

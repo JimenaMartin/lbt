@@ -10,7 +10,7 @@ import { BtnLink } from "./BtnLink";
 
 export function TokenAllocation() {
   const theme = useTheme();
-  const isXsSize = useMediaQuery(theme.breakpoints.down("xs"));
+  const isSmSize = useMediaQuery(theme.breakpoints.down("sm"));
 
     return (
       <Grid container pt={10} id="tokenomics">
@@ -25,7 +25,7 @@ export function TokenAllocation() {
             <NavigateIcon />
           </BtnLink>
         </Grid>
-        <Grid item sm={7} mt={isXsSize ? 5 : 0}>
+        <Grid item sm={7} mt={isSmSize ? 5 : 0}>
           <img
             alt="Gro Supply"
             draggable={false}
