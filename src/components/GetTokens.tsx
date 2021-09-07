@@ -160,7 +160,7 @@ export function GetTokens({setIsOpen}: { setIsOpen: (val: boolean) => void}) {
             ))}
           </Box>
         </Box>
-        <Box display="flex" alignItems="end" position="relative">
+        <Box display="flex" alignItems="flex-end" position="relative">
           <CircularProgress
             size={42}
             variant="determinate"

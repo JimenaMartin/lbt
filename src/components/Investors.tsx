@@ -5,7 +5,6 @@ import {
   Box,
   useTheme,
   useMediaQuery,
-  IconButton,
   Link
 } from "@material-ui/core";
 import { css } from "@emotion/react";
@@ -16,16 +15,20 @@ export function Investors() {
     const theme = useTheme();
 
     const styles = {
-        box: css`
-            width: 48%;
-            height: 92px;
-            border: 1px solid #9aafbf;
-            border-radius: 16px;
-            @media (min-width: 1100px) {
-              width: 32%;
-            }
-        `
-    }
+      box: css`
+        width: 48%;
+        height: 92px;
+        border: 1px solid #9aafbf;
+        border-radius: 16px;
+        @media (min-width: 1100px) {
+          width: 32%;
+        }
+      `,
+      link: css`
+        cursor: pointer;
+        text-decoration: none;
+      `,
+    };
   const isXsSize = useMediaQuery(theme.breakpoints.down("xs"));
   const isLgSize = useMediaQuery(theme.breakpoints.down("lg"));
 
@@ -40,16 +43,19 @@ export function Investors() {
           <Typography variant="h1" color={theme.palette.grey[100]}>
             Backed by leading investors
           </Typography>
-          <Box display="flex" alignItems="center" mt={2} mb={isXsSize ? 5 : 0}>
+          <Box
+            css={styles.link}
+            component={Link}
+            href="https://www.gro.xyz/about#about-investors"
+            display="flex"
+            alignItems="center"
+            mt={2}
+            mb={isXsSize ? 5 : 0}
+          >
             <Typography mr={1} color={theme.palette.grey[200]}>
               See all
             </Typography>
-            <IconButton
-              component={Link}
-              href="https://www.gro.xyz/about#about-investors"
-            >
-              <NavigateIcon />
-            </IconButton>
+            <NavigateIcon />
           </Box>
         </Grid>
         <Grid item sm={7} width="100%">

@@ -4,17 +4,24 @@ import {
   Box,
   useTheme,
   useMediaQuery,
-  IconButton,
   Link,
 } from "@material-ui/core";
 import carrousel from "../assets/carrousel.png";
+import { css } from "@emotion/react";
 
 import { ReactComponent as NavigateIcon } from "../icons/navigate.svg";
 
 export function Team() {
-    const theme = useTheme();
+  const theme = useTheme();
 
   const isXsSize = useMediaQuery(theme.breakpoints.down("xs"));
+
+  const styles = {
+    link: css`
+      cursor: pointer;
+      text-decoration: none;
+    `,
+  };
 
 
   return (
@@ -27,16 +34,18 @@ export function Team() {
           A team with decades of experience from leading finance and technology
           institutions.
         </Typography>
-        <Box display="flex" alignItems="center" mt={2}>
+        <Box
+          css={styles.link}
+          display="flex"
+          alignItems="center"
+          mt={2}
+          component={Link}
+          href="https://www.gro.xyz/about"
+        >
           <Typography mr={1} color={theme.palette.grey[200]}>
             Meet the team
           </Typography>
-          <IconButton
-            component={Link}
-            href="https://www.gro.xyz/about"
-          >
-            <NavigateIcon />
-          </IconButton>
+          <NavigateIcon />
         </Box>
       </Grid>
       <Grid item sm={1} />

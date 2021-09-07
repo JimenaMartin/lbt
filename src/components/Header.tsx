@@ -23,6 +23,7 @@ export function Header({
     `,
     logo: css`
       width: 75px;
+      height: 100%;
       @media (max-width: 430px) {
         width: 63px;
       }

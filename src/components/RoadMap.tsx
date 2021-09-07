@@ -1,10 +1,18 @@
-import { Grid, Typography, Box, useTheme, IconButton, Link } from "@material-ui/core";
+import { Grid, Typography, Box, useTheme, Link } from "@material-ui/core";
+import { css } from "@emotion/react";
 import gro_roadmap from "../assets/gro_roadmap.png";
 
 import { ReactComponent as NavigateIcon } from "../icons/navigate.svg";
 
 export function RoadMap() {
-    const theme = useTheme();
+  const theme = useTheme();
+
+  const styles = {
+    link: css`
+      cursor: pointer;
+      text-decoration: none;
+    `,
+  };
 
   return (
     <Grid container pt={10} id="roadmap">
@@ -17,16 +25,18 @@ export function RoadMap() {
             2nd Half of 2021
           </Typography>
         </Box>
-        <Box display="flex" alignItems="center" mt={2}>
+        <Box
+          css={styles.link}
+          display="flex"
+          alignItems="center"
+          mt={2}
+          component={Link}
+          href="https://groprotocol.medium.com/gro-protocol-roadmap-721932642c25"
+        >
           <Typography mr={1} color={theme.palette.grey[200]}>
             Learn More
           </Typography>
-          <IconButton
-            component={Link}
-            href="https://groprotocol.medium.com/gro-protocol-roadmap-721932642c25"
-          >
-            <NavigateIcon />
-          </IconButton>
+          <NavigateIcon />
         </Box>
       </Grid>
       <Grid item lg={12} mt={5}>

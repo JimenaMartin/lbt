@@ -4,9 +4,18 @@ import { ReactComponent as NavigateIcon } from "../icons/navigate.svg";
 import { ReactComponent as DiscordIcon } from "../icons/discord.svg";
 import { ReactComponent as TwitterIcon } from "../icons/twitter.svg";
 import { ReactComponent as TelegramIcon } from "../icons/telegram.svg";
+import { css } from "@emotion/react";
 
 export function InfoLinks() {
   const theme = useTheme();
+
+    const styles = {
+      link: css`
+        cursor: pointer;
+        text-decoration: none;
+      `,
+    };
+
 
     const links = [
       { label: "Tokenomics", href: "#tokenomics" },
@@ -23,25 +32,33 @@ export function InfoLinks() {
     return (
       <Box display="flex" justifyContent="space-between" flexWrap="wrap">
         {(isXsSize ? mobileLinks : links).map((elem) => (
-          <Box display="flex" alignItems="center" key={elem.label}>
-            <Typography  color={theme.palette.grey[100]}>
+          <Box
+            display="flex"
+            alignItems="center"
+            key={elem.label}
+            component={Link}
+            href={elem.href}
+            css={styles.link}
+          >
+            <Typography color={theme.palette.grey[100]} mr={1}>
               {elem.label}
             </Typography>
-            <IconButton component={Link} href={elem.href}>
-              <DownloadIcon />
-            </IconButton>
+            <DownloadIcon />
           </Box>
         ))}
-        <Box display="flex" alignItems="center">
-          <Typography color={theme.palette.grey[100]}>
+        <Box
+          display="flex"
+          alignItems="center"
+          component={Link}
+          css={styles.link}
+        >
+          <Typography color={theme.palette.grey[100]} mr={1}>
             Security Audits
           </Typography>
-          <IconButton>
-            <NavigateIcon />
-          </IconButton>
+          <NavigateIcon />
         </Box>
         <Box display="flex" alignItems="center" mt={isXsSize ? 2 : 0}>
-          <Typography  color={theme.palette.grey[100]}>
+          <Typography color={theme.palette.grey[100]}>
             See for updates:
           </Typography>
           <Box mr={1} display="flex" alignItems="center">
