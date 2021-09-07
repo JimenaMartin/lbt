@@ -28,11 +28,15 @@ export function GetTokens({setIsOpen}: { setIsOpen: (val: boolean) => void}) {
       max-width: 355px;
       height: 378px;
       margin-bottom: ${theme.spacing(3)};
+      padding: ${theme.spacing(4)} ${theme.spacing(3)};
       @media (max-width: 1100px) and (min-width: 600px) {
         min-width: 272px;
       }
       @media (max-width: 350px) {
         max-width: 300px;
+      }
+      @media (max-width: 800px) and (min-width: 500px) {
+        padding: ${theme.spacing(4)} ${theme.spacing(1.5)};
       }
     `,
     button: css`
@@ -118,7 +122,7 @@ export function GetTokens({setIsOpen}: { setIsOpen: (val: boolean) => void}) {
     .replace(/\B(?=(\d{3})+(?!\d))/g, ",");
 
   return (
-    <Box py={4} px={3} css={styles.box}>
+    <Box css={styles.box}>
       <Box display="flex" justifyContent="space-between">
         <Box>
           <Typography color={theme.palette.grey[100]} variant="h3" mb={1.3}>
@@ -204,15 +208,15 @@ export function GetTokens({setIsOpen}: { setIsOpen: (val: boolean) => void}) {
 
       <Box mt={4}>
         <Box display="flex" mb={1} justifyContent="space-between">
-          <Typography variant="h3" color={theme.palette.grey[100]}>
+          <Typography color={theme.palette.grey[100]} variant="h3">
             5,000,000
           </Typography>
-          <Typography variant="h3" color={theme.palette.grey[100]}>
+          <Typography color={theme.palette.grey[100]} variant="h3">
             /
           </Typography>
           <Typography
-            variant="h3"
             color={theme.palette.gro.superLight}
+            variant="h3"
           >
             {GROLeft} GRO left
           </Typography>
